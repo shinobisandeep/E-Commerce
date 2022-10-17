@@ -8,7 +8,7 @@ const username='sandeep';
 const app= express();
 
 
-mongoose.connect("mongodb+srv://sandeep:yEbr1WS6khh5d5Yj@cluster0.fbgglgi.mongodb.net/E-commerceDB?retryWrites=true&w=majority"
+mongoose.connect("mongodb+srv://sandeep:yEbr1WS6khh5d5Yj@cluster0.fbgglgi.mongodb.net/SanShopDB?retryWrites=true&w=majority"
 ).then(()=>{
   console.log('Connected to database!');
 })

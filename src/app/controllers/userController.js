@@ -1,5 +1,7 @@
-const User = require('../models/User');
-const user = require('../models/User');
+const { Error } = require('mongoose');
+const { createShorthandPropertyAssignment } = require('typescript');
+const userRegistration = require('../models/User');
+
 exports.Login = (req, res, next) => {
 
   console.log('Api login hit');
@@ -11,29 +13,18 @@ exports.Login = (req, res, next) => {
 
 exports.registration = (req, res, next) => {
 
-  const user = new User({
-    firstName: req.body.firstName,
-    lasttName: req.body.lasttName,
-    email: req.body.email,
-    password: req.body.password,
-    mobile: req.body.mobile,
-    dob: req.body.mobile,
-    role: req.body.role
-
-  });
+  const user = new userRegistration(req.body);
 
   user.save().then(userCreated => {
     res.status(201).json({
-      message: 'user created Successfully',
-      user: {
-        ...userCreated,
-        id: userCreated._id
-      }
-    });
+      message:'Registration Successfull',
+      user: {...userCreated}
+  });
   })
     .catch(error => {
       res.status(500).json({
-        message: "creating a user failed"
+        message: "creating a user failed",
+        error: error
       })
     })
 
